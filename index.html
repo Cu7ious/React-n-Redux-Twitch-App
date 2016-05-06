@@ -3,10 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <title>Todo App with React &amp; Redux</title>
+  <link rel="stylesheet" href="assets/css/style.css" media="screen" title="no title" charset="utf-8">
 </head>
 <body>
 
-  <div id="root"></div>
+  <header>
+  <h1><i>React'n'Redux based</i><br><span>Twitch App</span></h1>
+</header>
+<div class="wrapper">
+  <main class="app" id="app">
+    <section class="app-tabs">
+      <ul class="tabs">
+        <li class="tab current-tab"><a href="#">All</a></li>
+        <li class="tab"><a href="#">Online</a></li>
+        <li class="tab"><a href="#">Offline</a></li>
+      </ul>
+    </section>
+    <div class="app-searchBar">
+      <div class="input-wrapper">
+        <input type="text">
+        <button id="search" class="clear">⨂</button>
+      </div>
+    </div>
+    <section class="app-content">
+      <figure>
+        <img src="//www.w3schools.com/images/colorpicker.gif" alt="Ch Name" />
+        <figcaption>FreeCodeCamp</figcaption>
+        <p></p>
+        <span class="offline">&#x02717;</span>
+      </figure>
+      <figure>
+        <img src="//www.w3schools.com/images/colorpicker.gif" alt="Ch Name" />
+        <figcaption>FreeCodeCamp</figcaption>
+        <p>Some cool code talk</p>
+        <span class="online">&#x02713;</span>
+      </figure>
+      <figure>
+        <img src="//www.w3schools.com/images/colorpicker.gif" alt="Ch Name" />
+        <figcaption>FreeCodeCamp</figcaption>
+        <p></p>
+        <span class="offline">&#x02717;</span>
+      </figure>
+    </section>
+  </main>
+</div>
+<footer>
+  <p>Designed &amp; coded by <a href="//cu7io.us" target="_blank">Cu7ious</a></p>
+</footer>
 
   <script src="wp-bundle.js"></script>
 </body>
