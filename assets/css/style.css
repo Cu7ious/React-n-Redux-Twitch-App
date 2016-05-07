@@ -30,7 +30,6 @@ html, body {
   box-shadow: 3px 3px 30px rgba(0, 0, 0, 0.3) inset;
 }
 
-
 /* Header */
 header {
   overflow: hidden;
@@ -82,7 +81,7 @@ header h1 span {
   background-color: #FF4013;
   box-shadow: 3px 3px 30px rgba(0, 0, 0, 0.2) inset;
 }
-.tab a {
+.tab span {
   font: 18px monospace;
   text-decoration: none;
   color: #fff;
@@ -133,7 +132,7 @@ header h1 span {
 }
 
 /* Content */
-.app-content {
+.app-channels-list {
   padding-bottom: 15px;
 }
 
@@ -150,16 +149,22 @@ figure {
 figure p {
   font: 12px sans-serif;
   position: absolute;
-  bottom: 20px;
-  margin-left: 100px;
+  bottom: 25px;
+  margin-left: 105px;
 }
 figure:last-child {
   border: 0;
 }
-figure img {
-  display: inline-block;
+figure .image-wraper {
   float: left;
-  padding: 0 20px 0 0;
+  display: inline-block;
+  margin: 0 20px 0 0;
+  width: 80px;
+  height: 78px;
+  border: 2px solid #D2D2D2;
+  border-radius: 50px;
+  background-repeat: no-repeat;
+  background-position: center top;
 }
 figure figcaption {
   display: inline-block;

@@ -2,28 +2,27 @@ import React from 'react';
 import { connect } from 'react-redux';
 import AppContainer from '../containers/AppContainer';
 import Tabs from '../components/Tabs';
-import Tabs from '../components/Tab';
+import SearchBar from '../components/SearchBar';
+import ChannelsList from '../components/ChannelsList';
 
 class App extends React.Component {
 
   render() {
     const { dispatch } = this.props;
-
     window.dispatch = dispatch;
 
     return(
-      <AppContainer data={this.props}>
-        <Tabs>
-          <Tab>All</Tab>
-          <Tab>Online</Tab>
-          <Tab>Offline</Tab>
-        </Tabs>
+      <AppContainer>
+        <Tabs
+          items={['All', 'Online', 'Offline']}
+          dispatcher={dispatch}
+          store={this.props.store}
+        />
+        <SearchBar />
+        <ChannelsList />
       </AppContainer>
     );
   }
-
-  // <SearchBar />
-  // <TabContent />
 
 }
 
