@@ -34,8 +34,9 @@ class SearchBar extends React.Component {
     let result = []
     data.filter((el, i) => {
       let name = el.channel ? el.channel.display_name : el.display_name
-      let filterResult = name.toLowerCase().search(this._query)
-      if (filterResult !== -1) result.push(name)
+      let filterResultRaw = name.search(this._query)
+      let filterResultLowerCase = name.toLowerCase().search(this._query)
+      if (filterResultRaw !== -1 || filterResultLowerCase !== -1) result.push(name)
     });
 
     return result
