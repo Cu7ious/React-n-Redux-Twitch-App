@@ -1,35 +1,38 @@
-// const webpack = require('webpack');
+const webpack = require('webpack');
 
 module.exports = {
+  // devtool: 'source-map',
   entry: [
     './app/core.js'
   ],
 
   output: {
-    // path: __dirname + '/webpack-bundle',
     path: './webpack-bundle',
     filename: 'wp-bundle.js'
   },
 
   devServer: {
     inline: true,
-    port: process.env.PORT
+    port: 3000
   },
 
-  // plugins: [
-  //   new webpack.optimize.DedupePlugin(),
-  //   new webpack.optimize.UglifyJsPlugin({
-  //     minimize: true,
-  //     compress: {
-  //       warnings: false
-  //     }
-  //   }),
-  //   new webpack.DefinePlugin({
-  //     'process.env': {
-  //       'NODE_ENV': JSON.stringify('production')
-  //     }
-  //   })
-  // ],
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    // new webpack.optimize.AggressiveMergingPlugin()
+    // new webpack.optimize.OccurenceOrderPlugin(),
+    // new webpack.optimize.DedupePlugin(),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: { warnings: false },
+    //   comments: false,
+    //   // sourceMap: false,
+    //   // mangle: true,
+    //   // minimize: true
+    // })
+  ],
 
   module: {
     loaders: [

@@ -8,7 +8,7 @@
   },
   "keywords": [],
   "author": "CU7IOUS",
-  "license": "ISC",
+  "license": "GNU GPL v.3",
   "dependencies": {
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
