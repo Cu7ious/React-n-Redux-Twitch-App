@@ -1,34 +1,54 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import App from './components/App';
-import mainReducer from './reducers';
+import React from 'react'
+import { render } from 'react-dom'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import App from './components/App'
+import * as reducers from './reducers'
+import thunk from 'redux-thunk'
 
-let store = createStore(mainReducer);
+// ** EDUCATIONAL ** //
+// ping middleware - simplest Middleware example
+const ping = function ping(store) {
+  return function (next) {
+    return function (action) {
+      console.log('ping middleware was triggered');
+      return next(action);
+    };
+  };
+};
+// ** EDUCATIONAL ** //
 
-render(
-  <Provider store={store}>
-    <App store={store} />
-  </Provider>,
-  document.getElementById('app')
-);
+const store = createStore(
+  combineReducers(
+    {
+      data: reducers.data,
+      query: reducers.query,
+      filter: reducers.filter,
+      byQuery: reducers.byQuery
+    }
+  ),
+  applyMiddleware(thunk, ping)
+)
 
-store.subscribe(() => {
-  console.log(store.getState());
-});
+// ** DEBUG CODE ** //
+import { fetchData, searchChannels, filterAll, filterOnline, filterOffline, filterByQuery } from './actions'
+window.store = store
+window.fetchData = fetchData
+window.searchChannels = searchChannels
+window.filterAll = filterAll
+window.filterOnline = filterOnline
+window.filterOffline = filterOffline
+window.filterOffline = filterByQuery
+// ** DEBUG CODE ** //
 
-// function _askWikipedia(q) {
-//   let url = 'https://api.twitch.tv/kraken/streams/featured?limit=5&callback=parseResponse';
-//     // encodeURIComponent(q) +
-//
-//     let dataSrc = document.createElement('script');
-//     dataSrc.src = url;
-//     document.body.appendChild(dataSrc);
-//
-//     window.parseResponse = function(data) {
-//       console.log(data);
-//     }
-// }
+const run = () => {
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('app')
+  );
+}
 
-// _askWikipedia();
+run();
+store.subscribe(run)

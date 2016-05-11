@@ -1,21 +1,20 @@
-import React from 'react';
-import { changeTab } from '../actions'
+import React from 'react'
 
 class Tab extends React.Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super()
+    this._changeTab = this._changeTab.bind(this)
   }
 
-  _dispatchAction() {
-    let dispatch = this.props.dispatch;
-    dispatch(changeTab(this.props.index));
+  _changeTab() {
+    this.props.act()
   }
 
   render () {
-    var cName = (this.props.current) ? "tab current-tab" : "tab";
+    let classes = (this.props.current) ? "tab current-tab" : "tab";
     return (
-      <li className={cName} onClick={this._dispatchAction.bind(this)}>
+      <li className={classes} onClick={this._changeTab}>
         <span>{this.props.children}</span>
       </li>
     );
