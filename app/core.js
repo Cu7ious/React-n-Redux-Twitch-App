@@ -45,10 +45,10 @@ const run = () => {
   render(
     <Provider store={store}>
       <App />
-    </Provider>,
-    document.getElementById('app')
-  );
+    </Provider>
+    , document.getElementById('app')
+  )
 }
 
-run();
+run()
 store.subscribe(run)
