@@ -1,17 +1,16 @@
 // run in shell
 // NODE_ENV=production webpack -p --config webpack.config.js
-
 const webpack = require('webpack');
 
 module.exports = {
-  devtool: 'source-map',
+  // devtool: 'source-map',
   entry: [
     './app/core.js'
   ],
 
   output: {
-    path: './webpack-bundle',
-    filename: 'wp-bundle.js'
+    path: './assets/js/',
+    filename: 'bundle.js'
   },
 
   devServer: {
@@ -31,7 +30,6 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false },
       comments: false,
-      // sourceMap: false,
       mangle: true,
       minimize: true
     })
