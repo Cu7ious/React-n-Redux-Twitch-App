@@ -30,7 +30,7 @@ class SearchBar extends React.Component {
   }
 
   _filterByQuery() {
-    let data = this.props.data.data
+    let data = this.props.data.data.online.concat(this.props.data.data.offline)
     let result = []
     data.filter((el, i) => {
       let name = el.channel ? el.channel.display_name : el.display_name

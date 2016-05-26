@@ -21,9 +21,19 @@ export const fetchData = () => {
   }
 
   const _dispatchSucess = (success, dispatch) => {
+    let response = {}
+    response.online = success.filter((el) => {
+      let result = el.channel ? el : false
+      return result
+    })
+    response.offline = success.filter((el) => {
+      let result = !el.channel ? el : false
+      return result
+    })
+
     dispatch({
       type: 'FETCH_POSTS_SUCCESS',
-      response: success,
+      response: response,
       fetching: false
     })
   }

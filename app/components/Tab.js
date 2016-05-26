@@ -12,12 +12,12 @@ class Tab extends React.Component {
   }
 
   render () {
-    let classes = (this.props.current) ? "tab current-tab" : "tab";
+    let classes = this.props.current ? "tab current-tab" : "tab";
     return (
       <li className={classes} onClick={this._changeTab}>
-        <span>{this.props.children}</span>
+        <span>{this.props.children}</span>{this.props.info ? <i>{this.props.info}</i> : false}
       </li>
-    );
+    )
   }
 }
 

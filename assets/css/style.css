@@ -20,11 +20,13 @@ html, body {
 }
 .wrapper {
   max-width: 960px;
-  margin: 25px auto 0;
-  padding: 0 40px;
+  margin: 0 auto 0;
+  padding: 25px 40px 0;
+  /*transition: padding .1s linear;*/
 }
 .app {
   max-width: 480px;
+  min-width: 380px;
   margin: 0 auto;
   background-color: #ededed;
   box-shadow: 3px 3px 30px rgba(0, 0, 0, 0.3) inset;
@@ -54,18 +56,17 @@ header h1 span {
   font-family: monospace;
 }
 .github-badge {
+  /*display: block;*/
   width: 50px;
   position: absolute;
   right: 40px;
   top: 37px;
-  display: block;
+  /*transition: width .1s linear;*/
 }
 
 /* Tabs */
-.app-tabs {
-  background-color: #FF9632;
-}
 .tabs {
+  background-color: #FF9632;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -74,10 +75,13 @@ header h1 span {
 }
 .tab {
   flex: 1;
+  position: relative;
   border-right: 1px solid #fff;
-  display: block;
   padding: 30px 0;
   cursor: pointer;
+  font: 18px monospace;
+  color: #fff;
+  text-transform: capitalize;
 }
 .tab:last-child {border-right-color: transparent;}
 .tab:active,
@@ -88,13 +92,18 @@ header h1 span {
   background-color: #FF4013;
   box-shadow: 3px 3px 30px rgba(0, 0, 0, 0.2) inset;
 }
-.tab span {
-  font: 18px monospace;
-  color: #fff;
-  display: block;
-  width: 100%;
-  text-transform: capitalize;
-  height: 100%;
+.tab i {
+  background-color: #FFF;
+  padding: 1px 4px 0px;
+  font: 11px sans-serif;
+  border-radius: 20px;
+  position: absolute;
+  top: 25px;
+  margin-left: 2px;
+  color: #FF9632;
+}
+.tab.current-tab i {
+  color: #FF4013;
 }
 
 /* Search Bar */
@@ -105,20 +114,19 @@ header h1 span {
   position: relative;
 }
 .input-wrapper {
-  height: 20px;
-  min-width: 300px;
+  width: auto;
   border-radius: 50px;
-  padding: 10px 40px 10px 10px;
   background-color: #fff;
   box-shadow: 3px 3px 30px rgba(0, 0, 0, 0.3) inset;
 }
 .input-wrapper input {
   border: 0;
   width: 100%;
-  font: 24px serif;
+  font: 24px monospace;
+  box-sizing: border-box;
+  padding: 10px 30px 5px 22px;
   margin-top: -5px;
-  padding-left: 5px;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0);
 }
 .app-searchBar .clear {
   cursor: pointer;
@@ -169,6 +177,10 @@ figure {
   font: 24px monospace;
   line-height: 60px;
   position: relative;
+  transition: background-color .5s linear;
+}
+figure:hover {
+  background-color: #E0E0E0;
 }
 figure p {
   font: 12px sans-serif;
@@ -179,13 +191,13 @@ figure p {
   white-space: nowrap;
   max-width: 300px;
   overflow: hidden;
+  color: #656565;
 }
 figure:last-child {
   border: 0;
 }
 figure .image-wraper {
   float: left;
-  display: inline-block;
   margin: 0 20px 0 0;
   width: 80px;
   height: 78px;
@@ -196,11 +208,10 @@ figure .image-wraper {
   background-size: 80px;
 }
 figure figcaption {
-  display: inline-block;
+  color: #616161;
   float: left;
 }
 figure span {
-  display: inline-block;
   float: right;
   margin: 2px 0 0;
 }
@@ -239,5 +250,17 @@ footer a:hover {
   }
   100% {
     transform: perspective(100px) rotateX(0) rotateY(0);
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .wrapper {
+    margin: 0;
+    padding: 0;
+  }
+  .github-badge {
+    width: 35px;
+    right: 45px;
+    top: 65px;
   }
 }

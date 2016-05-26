@@ -1,7 +1,7 @@
 import React from 'react';
 
 class Channel extends React.Component {
-  // http://fakeimg.pl/300/E3E3E3/?text=?&font=museo&font_size=200
+
   render() {
     let p = this.props
     // console.log(p);
@@ -11,9 +11,11 @@ class Channel extends React.Component {
 
     return (
       <figure>
-        <div className="image-wraper" style={{backgroundImage: 'url('+ pic +')'}}></div>
-        <figcaption>{p.caption}</figcaption>
-        <p>{statusText}</p>
+        <a href={p.link} target="_blank">
+          <div className="image-wraper" style={{backgroundImage: 'url('+ pic +')'}}></div>
+          <figcaption>{p.caption}</figcaption>
+          <p>{statusText}</p>
+        </a>
         {status}
       </figure>
     );

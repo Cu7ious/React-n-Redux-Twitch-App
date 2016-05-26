@@ -9,10 +9,12 @@ class Tabs extends React.Component {
       <div className="app-tabs">
         <ul className="tabs">
           {
-            this.props.items.map((el, idx) => {
+            p.items.map((el, idx) => {
               return(
-                <Tab key={idx}
+                <Tab
+                  key={idx}
                   act={p.acts[idx]}
+                  info={p.info[idx]}
                   current={(p.current === el) ? "current" : false}>
                   {el}
                 </Tab>

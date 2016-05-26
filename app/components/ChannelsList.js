@@ -9,40 +9,47 @@ class ChannelsList extends React.Component {
 
   render() {
     let p = this.props
-    // console.log(p);
     let channels = p.data.data ? p.data.data : false
     let channelsList = []
+    let twitchURL = "//twitch.tv/"
 
-    if (channels.length) {
-      channels.forEach((el, i) => {
-        let logo = el.channel ? el.channel.logo : el.logo
-        let caption = el.channel ? el.channel.display_name : el.display_name
-        let status = el.channel ? el.channel.status : false
+    if (channels) {
 
-        let pushChannels = () => {
-          if (p.query && p.byQuery.length) {
+      switch (p.filter) {
+        case 'online':
+          pushChannels(channels.online);
+          break
+        case 'offline':
+          pushChannels(channels.offline);
+          break
+        default:
+          pushChannels( channels.online.concat(channels.offline) )
+      }
+
+      function pushChannels (channelsArray) {
+        channelsArray.forEach((el, i) => {
+          let logo    =  el.channel ? el.channel.logo : el.logo
+          let caption =  el.channel ? el.channel.display_name : el.display_name
+          let status  =  el.channel ? el.channel.status : false
+          let link    =  el.channel ? twitchURL + el.channel.name : twitchURL + el.name
+
+          if (!p.query) {
+            channelsList.push(
+              <Channel key={i} pic={logo} link={link}
+                caption={caption} status={status}
+              />
+            )
+          } else if (p.query && p.byQuery.length) {
             if (p.byQuery.indexOf(caption) !== -1) {
               channelsList.push(
-                <Channel key={i} pic={logo}
-                  serchIndex={i} caption={caption} status={status}
+                <Channel key={i} pic={logo} link={link}
+                  caption={caption} status={status}
                 />
               )
             }
-          } else if (!p.query) {
-            channelsList.push(
-              <Channel key={i} pic={logo}
-                serchIndex={i} caption={caption} status={status}
-              />
-            )
           }
-        }
-
-        switch (p.filter) {
-          case 'online': if (status) pushChannels(); break
-          case 'offline': if (!status) pushChannels(); break
-          default: pushChannels()
-        }
-      });
+        })
+      }
     }
 
     return(

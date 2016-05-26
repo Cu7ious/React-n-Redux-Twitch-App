@@ -29,19 +29,35 @@ class App extends React.Component {
 
   render() {
     let p = this.props
-    // console.log(p);
+    let counters = []
+
+    if (p.data.data) {
+      counters.push(p.data.data.online.concat(p.data.data.offline).length),
+      counters.push(p.data.data.online.length),
+      counters.push(p.data.data.offline.length)
+    }
+
     return(
       <div>
-        <Tabs current={p.filter}
-          acts={[p.filterAll, p.filterOnline, p.filterOffline]}
-          items={['all', 'online', 'offline']} />
-        <SearchBar acts={{
+        <Tabs
+          current={p.filter}
+          items={['all', 'online', 'offline']}
+          info={counters}
+          acts={[
+            p.filterAll,
+            p.filterOnline,
+            p.filterOffline
+          ]}
+        />
+        <SearchBar
+          query={p.query} data={p.data}
+          acts={{
             searchChannels: p.searchChannels,
             filterByQuery: p.filterByQuery
           }}
-          query={p.query} data={p.data}
         />
-        <ChannelsList data={p.data} filter={p.filter}
+        <ChannelsList
+          data={p.data} filter={p.filter}
           query={p.query} byQuery={p.byQuery}
         />
       </div>
